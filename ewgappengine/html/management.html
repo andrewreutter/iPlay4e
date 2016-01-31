@@ -1,0 +1,45 @@
+    {% if model %}
+        <div class="ManagementTableNav">
+            {% if copying %}Copying{% else %}Editing{% endif %} existing {{ modelClassDisplayName }}
+        </div>
+    {% endif %}
+    <form method="POST" action="/{{ modelClassName }}/save"
+    id="editForm{{ modelClassName }}{{ model.key }}"
+    onsubmit="submitFormIntoDiv(this, this.parentNode, [function(r,d) {$(d).scrollTo();}], {cacheUrl:1,refreshUrl:1});return false;"
+    >
+        <div class="TableWrapper">
+            <table>
+                {{ form }}
+            </table>
+        </div>
+    {% if model %}
+        <input name="_action" type="submit" value="Save">
+    {% else %}
+        {% if modelClass.referringProperties %}
+            <input name="_action" type="submit" value="Save and Continue">
+        {% else %}
+            <input name="_action" type="submit" value="Save">
+        {% endif %}
+    {% endif %}
+    {% if reloadOnCancel %}
+        <input name="_action" type="submit" value="Cancel">
+    {% else %}
+        <input type="button" value="Cancel" 
+        onclick="MODEL_TOGGLES['modelToggle{{ modelClassName }}{{ parent }}'].toggle(0,null,null);">
+    {% endif %}
+        <input type="hidden" name="_key" value="{{ model.key }}">
+        <input type="hidden" name="parent" value="{{ parent }}">
+        <input type="hidden" name="prop" value="{{ propertyName }}">
+        <input type="hidden" name="{{ propertyName }}" value="{{ parent }}">
+    </form>
+{% if model %}
+{% for refPropInfo in model.referringPropertiesInfo %}
+    <div id="managementBody{{ model.key }}{{ refPropInfo.kind }}{{ refPropInfo.referringProperty.name }}" 
+     class="SubManagementBody">
+        <img src="/images/DivLoadingSpinner.gif">{{ refPropInfo.prettyClassName }} associations loading...
+    </div>
+    <script type="text/javascript" language="javascript">
+         fetchSubModels( '{{ model.key }}', '{{ refPropInfo.kind }}', '{{ refPropInfo.referringProperty.name }}' );
+    </script>
+{% endfor %}
+{% endif %}

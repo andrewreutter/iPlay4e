@@ -1,0 +1,18 @@
+<tr>
+    <td class="Action">
+        <a title="Delete" href=""
+         onclick="new Effect.Pulsate(this,{duration:10});getUrlIntoDiv('/{{ modelClassName }}/delete?key={{ model.key }}&parent={{ parent }}&prop={{ propertyName }}', 'managementContent{{ modelClassName }}{{ parent }}', [], {});return false;"><img src="/images/minus.png"></a>
+        <a title="Edit" href=""
+         onclick="editModel(this,'{{ modelClassName }}', '{{ model.key }}', '{{ parent }}', '{{ propertyName }}' );return false;"><img src="/images/modify.gif"></a>
+        <a title="View" href=""
+         onclick="customViewModel(this,'{{ modelClassName }}', '{{ model.key }}', '{{ parent }}', '{{ propertyName }}' );return false;"><img src="/images/view.gif"></a>
+        <a title="Copy" href=""
+         onclick="copyModel(this,'{{ modelClassName }}', '{{ model.key }}', '{{ parent }}', '{{ propertyName }}' );return false;"><img src="/images/copy.png"></a>
+    </td>
+{% for listItemDef in listItemDefs %}
+    <td {% if listItemDef.wrappable %}class="Wrappable"{% endif %}>
+        {{ listItemDef.value }}
+    </td>
+{% endfor %}
+    <td width="99%">&nbsp;</td>
+</tr>

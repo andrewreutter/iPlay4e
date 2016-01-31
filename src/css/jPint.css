@@ -1,0 +1,516 @@
+/* Copyright (c) 2008 Journyx, Inc.
+
+   Permission is hereby granted, free of charge, to any person obtaining
+   a copy of this software and associated documentation files (the
+   "Software"), to deal in the Software without restriction, including
+   without limitation the rights to use, copy, modify, merge, publish,
+   distribute, sublicense, and/or sell copies of the Software, and to
+   permit persons to whom the Software is furnished to do so, subject to
+   the following conditions:
+  
+   The above copyright notice and this permission notice shall be
+   included in all copies or substantial portions of the Software.
+  
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+   LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  
+   The software may not be used to develop, enable or integrate with 
+   time, expense, or mileage tracking software of any kind,  except when
+   such software is provided by Journyx or its designated licensees.
+*/
+
+/*	GENERAL
+
+	Building a jPint app, step by step:
+
+	- Your overall document structure should look like this:
+
+		<body>
+			<div class="jPintPageSet">
+				<div id="iconMenuPage" class="jPintPage IconMenu">...</div>
+				<div id="edgedListPage" class="jPintPage EdgedList">...</div>
+				<div id="roundedListPage" class="jPintPage RoundedList">...</div>
+			</div>
+		</body>
+
+	- Each jPintPage div represents a single "page" - only will be displayed at any given time.  
+	  The first one present in the body will be the first one displayed.
+
+	- Each jPintPage div should also have a class that determines its type,
+	  such as RoundedList, EdgedList, etc...  See PAGE TYPES below.
+
+	- To create a link from one page to another, use named anchors as href:
+
+		<a href="#calendarPage">Calendar</a>
+
+	  If there are too many jPintPage divs in your app, you might encounter performance
+	  issues or outright failure on mobile devices.  To avoid this problem, don't actually
+	  include all of the pages that might appear.  Instead, build links to them like this:
+
+	  	<a href="calendarPage@calendar.html">Calendar</a>
+
+	  When the user clicks that link, jPint will show a loading icon while it loads up
+	  calendar.html in the background.  That html file should include just the div you
+	  want displayed, e.g.:
+
+	  	<div class="jPintPage RoundedList">...</div>
+
+	  Once jPint has loaded it, the screen will animate and navigate to it as usual.
+
+	- If you want a title bar on a page, simply include an h1 within the jPintPage, and add
+	  the HasTitle class to the jPintPage div.
+
+	- If you want buttons in your title bar, add <a> tags with the LeftButton, RightButton,
+	  BackButton classes.  If such a button will only contain a single character (e.g. +),
+	  also add the SymbolButton class to it.  If it should be highlit, add ActiveButton to it also.
+	  Any <a> with the BackButton class will automatically gain the correct behavior.
+
+	- If you want to have an edit mode for an jPintPage, include appropriate content in
+	  divs with EditModeVisible and EditModeInvisible classes.  See WebNotes in index.html for an
+	  example of using EditMode.
+*/
+
+body { margin: auto; padding: 0; -webkit-text-size-adjust:none; font-family: Helvetica; overflow-x: hidden; overflow-y: scroll; min-height: 356px; }
+textarea { padding: 0; -webkit-text-size-adjust:none; font-family: Helvetica; font-size: 17px; }
+
+/*	PAGES
+*/
+.jPintPageSet { min-height: 479px; overflow: hidden; background-color:white;}
+.jPintPage { min-height: 479px; position: relative; top: 0px; left: 0px; padding-bottom: 1px; font-size:1.25em;  }
+
+
+/*	TITLE BARS
+
+	Put HasTitle on the jPintPage div, and an h1 inside that jPintPage.
+*/
+.HasTitle { padding-top: 0;}
+h1 
+{
+	top: 0; left: 0; z-index: 1000;
+	padding: 10px 0; margin: 0; 
+	width:100%; height:56px; *height:76px;
+
+    box-sizing: border-box; border-bottom: 1px solid #2d3642;
+    line-height: 20px; font-size: 20px; font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0; text-overflow: ellipsis;
+    color: #FFFFFF;
+    background-color: #6d84a2;
+
+    position:relative;
+}
+h1 div.Subtitle { font-size:.8em; font-weight:normal; position:absolute; top:12px; right:12px; }
+h1 div.Subtitle a { text-decoration:underline; margin-left:4px; float:right; }
+
+a { text-decoration: none; }
+
+/*	BUTTON POSITIONS 
+
+	All that actually goes in your HTML is:
+
+		<a class="BackButton">Back</a>
+
+	which jPintLayout.initLayout() converts to:
+
+		<div class="BackButton">
+			<span class="BackButton SlidingBackWrapper">
+				<a class="BackButton">Back</a>
+			</span>
+		</div>
+*/
+
+div.LeftButton, div.BackButton, div.RightButton { margin: -1px -3% 0 0; }
+div.LeftButton, div.BackButton { float:left; }
+div.RightButton { float:right; margin-right:2%; }
+div.BackButton { border-width: 0 5px 0 12px; margin-right: 5%; }
+
+div.BackButton span.SlidingBackWrapper
+{	background:url(../images/blackButtonLeft.png) no-repeat left top;
+	padding-left: 5px;
+}
+div.BackButton span.SlidingBackWrapper a
+{	background:url(../images/blackButtonRight.png) no-repeat right top;
+}
+div.ActiveButton span.SlidingBackWrapper
+{	background:url(../images/activeButtonLeft.png) no-repeat left top;
+}
+div.ActiveButton span.SlidingBackWrapper a
+{	background:url(../images/activeButtonRight.png) no-repeat right top;
+}
+div.DeleteConfirm span.SlidingBackWrapper
+{	background:url(../images/redButtonLeft.png) no-repeat left top;
+	padding-left: 20px;
+	margin-right: 13px;
+	top: -5px;
+	height: 30px;
+}
+div.DeleteConfirm span.SlidingBackWrapper a
+{	background:url(../images/redButtonRight.png) no-repeat right 8px;
+	color: white;
+	cursor: pointer;
+	padding-right: 24px;
+}
+div.DoubleButton span.SlidingBackWrapper
+{	background:url(../images/whiteButtonLeft.png) no-repeat left top;
+	top: -5px;
+}
+div.DoubleButton span.SlidingBackWrapper .ALike
+{	background:url(../images/whiteButtonRight.png) no-repeat right top;
+	color: black;
+}
+div.LeftButton span.SlidingBackWrapper a.SymbolButton,
+div.RightButton span.SlidingBackWrapper a.SymbolButton,
+div.BackButton span.SlidingBackWrapper a.SymbolButton { font-size: 24px; line-height: 24px; }
+
+.HelpButton img { margin:0;border:none;position:relative;top:4px; }
+
+
+/*	SLIDING DOOR BUTTONS */
+
+span.SlidingBackWrapper {
+  float:left; position: relative; top: -3px;
+  background:url(../images/blueButtonLeft.png) no-repeat left top;
+  margin:0 5px 0 5px;
+  padding:0 0 0 0px;
+  }
+span.SlidingBackWrapper a,
+span.SlidingBackWrapper .ALike
+{
+	position: relative; left: 5px; /* Make sure the containing element doesn't peek through */
+	float:left;
+	display:block;
+	background:url(../images/blueButtonRight.png) no-repeat right top;
+	padding:1px 10px 1px 6px;
+    height: 28px; line-height: 28px;
+    font-size: 12px; font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+    color: #FFFFFF;
+  }
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+span.SlidingBackWrapper a, span.SlidingBackWrapper .ALike { float:none; }
+/* End IE5-Mac hack */
+
+/*	EDIT MODE
+	
+	This is pretty slick.  If a jPintPage has EditModeOn toggled on and off, content within
+	that page inside of EditModeVisible and EditModeInvisible elements appears and disappears
+	appropriately.
+*/
+
+.EditModeVisible, .EditModeOn .EditModeInvisible, .EditModeOff .EditModeVisible { display: none; }
+.EditModeOn .EditModeVisible, .EditModeInvisible, .EditModeOff .EditModeInvisible { display: inline; }
+
+
+/*	PAGE TYPES
+
+	Each jPintPage div should have one of the following page type classes assigned to it.
+*/
+
+.RoundedList /* Is like the iPhone Settings page. */
+{	
+	padding-left: 10px; width: 97%;
+	background-color: rgb(197,204,211); background-image: url(../images/pinstripe.jpg);
+}
+.EdgedList /* Is like the iPhone Favorites page, or Contacts if you use h2s, or notes with the Notes addon. */
+{
+}
+.IconMenu /* Is like the iPhone main page. */
+{	background-color: black;
+	padding: 25px 0 0 20px; width: 300px;
+	height: 396px;
+}
+
+/* ADDON TYPES can be added to the basic page types. */
+.Notes /* Like the notes app on iPhone */
+{
+	background-color: rgb(233,233,181);
+}
+.Notes h1
+{
+	background-image: none;
+	background-color: rgb(90,63,50);
+}
+.Notes textarea
+{	border: none;
+	width: 100%; height: 440px;
+	background-color: rgb(233,233,181);
+	padding: 8px;
+}
+
+/*	LIST PAGE TYPES
+
+	RoundedList and EdgedList jPintPages should consist of one or more unordered lists (<ul>).
+	Each unordered list can optionally be preceeded by an h2 tag that will become the list header.
+*/
+
+.RoundedList h2, .EdgedList h2 {	margin: 0; font-size: 17px; }
+.RoundedList h2 { padding: 10px; color: rgb(76,86,108); }
+.EdgedList h2
+{	padding: 1px 0; width: 100%;
+	font-weight:normal; color: #fff;
+    background:#bbb;
+    clear:both; float:left;
+}
+.EdgedList h2 div { margin-left:10px; }
+.EdgedList h2 a { width:100%; display:block; height:20px; }
+.EdgedList h2 a, .EdgedList h2 a:link, .EdgedList h2 a:active, .EdgedList h2 a:visited { width:100%; display:block; height:20px; color:white; }
+.EdgedList h2 img { border:none; }
+
+.EdgedList ul, .RoundedList ul
+{	padding: 0;
+	font-weight:bold;
+	color:black;
+}
+.RoundedList ul
+{	background-color: white;
+}
+.EdgedList ul { margin: 0; }
+.RoundedList ul
+{	margin: 0 10px 17px 0; 
+	border: 1px solid rgb( 217, 217, 217 );
+	font-size:17px;
+	-webkit-border-radius: 8px;		 /* Round each corner of the created rectangle */
+	-moz-border-radius: 8px;		 /* Round each corner of the created rectangle */
+}
+/* Skip IE */
+body:last-child .EdgedList ul, body:last-child .RoundedList ul { width:100%; }
+
+
+/*	The total cell height includes the padding-top, padding-bottom, border and height values: 
+	10+14+1+19=44 pixels 
+*/
+.RoundedList ul li, .EdgedList ul li
+{	list-style-type: none;	white-space: normal;
+	border-top: 1px solid rgb( 217, 217, 217 );
+	padding-top: 12px;
+	padding-bottom: 8px; 
+    height:auto; line-height:19px;
+	clear:both; float:left;
+    min-height:19px; width:100%;
+}
+/* Skip IE */
+body:last-child .EdgedList ul li, body:last-child .RoundedList ul li { position:relative; }
+.EdgedList li:first-child, .RoundedList li:first-child { border-top:0; } /* XXX Redundant w/ fixListBorders()? */
+
+/* In delete mode, we add some stylitude to each list item. */
+.EditModeOn ul.DeletableItems li
+{	padding-left: 49px;
+	background-image: url(../images/ABDeleteCircle.png); 
+	background-repeat: no-repeat; background-position: 10px 8px;
+}
+.EditModeOn li .secondary, .EditModeOn li .ListButton
+{ display: none; }
+
+span.DoubleButton { cursor: pointer; float: right; }
+li.DeleteConfirm span.DoubleButton { display: none; }
+
+ul.DeletableItems li span.DeleteButton
+{ cursor: pointer; position: absolute; top: 8px; left: 10px; width: 29px; height: 29px; }
+span.DeleteConfirm
+{ float: right; display: none; }
+li.DeleteConfirm span.DeleteConfirm, li.DeleteConfirm span.DeleteConfirm .ListButton
+{ display: inline; }
+.EditModeOn li.DeleteConfirm .SourtDouble .ListButton
+{ display: none; }
+.EditModeOn ul.DeletableItems li.DeleteConfirm
+{ background-image: url(../images/ABDeleteCircleRotated.png); }
+
+/*	Within a list item, you might want explanatory text floated right.  Use a span.secondary.
+
+	If the list item is a link, put the <a> immediately inside it so the whole thing is clickable.
+	Only the secondary text, which is over on the right, gets the link color.
+
+	If there should be a right arrow at the right side of the list item, include the withArrow
+	class on your secondary span.
+
+*/
+
+.primary { float:left; clear:both; margin-bottom:4px; margin-left:10px; margin-right: 28px;}
+.secondary { float:right; font-weight:normal; line-height:20px; text-align:right;white-space:normal; margin-right:10px; color: #324F85; }
+.tertiary { clear:both;display:block;left:2px;padding-right:20px;margin-top:-15px;font-size:12px;font-weight:normal; margin-left:10px; margin-right:10px;}
+
+/* Skip IE */
+body:last-child .primary, body:last-child .tertiary { position:relative; }
+
+/* IE7 (and IE8 because of the meta compatibility hack) */
+.primary { *padding-bottom:12px; }
+.tertiary { *width:auto; *margin-top:-20px; }
+
+.EdgedList ul li a, .RoundedList ul li a
+{	display: block; padding: 12px 8px 12px 0; margin: -12px 0;
+	color:black; min-height:20px;
+}
+.RoundedList ul li.withArrow, .EdgedList ul li.withArrow
+{	background-image: url(../images/chevron.png); background-repeat: no-repeat; background-position: 96% 50%; 
+}
+.RoundedList ul li.withArrow .secondary, .EdgedList ul li.withArrow .secondary { margin-right:9%; }
+
+.Loading { background-color:blue; }
+
+/* These are various types of inputs you might use.  They're all actually type=text. */
+.RoundedList ul li input.TextInput, .RoundedList ul li input.IntInput
+{	padding: 0; margin: 0; border: 0; width: 200px; text-align: left;
+	color: rgb( 200, 200, 200 ); font-size:17px; -webkit-appearance: none;
+}
+.RoundedList ul li input.TextInput:focus, .RoundedList ul li input.IntInput:focus
+{ border: 0; color: #324F85; }
+
+
+/* BUTTONS
+*/
+
+
+/* Each button should have the button class and one of the color classes */
+.ListButton 
+{	display:block; float:right;
+	border: solid gray 1px;
+	padding: 0 5px 0 5px; margin: -5px 0 0 10px;
+	height: 29px; line-height: 29px;
+	font-size: 12px; font-weight: bold;
+	color: #FFFFFF;
+	text-align:center; text-shadow: #000 1px 1px 1px;
+	cursor: pointer;
+}
+
+
+
+/* Make any object have clickable cursor and coloring */
+.Clickable { cursor: pointer; }
+.Unclickable { cursor: default; }
+
+/* Put this on elements when you want to character not in the Helvetica font, e.g. &uArr; */
+.NoFont { font-family: broken; }
+
+/* This adds extra left/right padding */
+.WidePadding { padding-left: 10px; padding-right: 10px; }
+
+/* If you want to display 29x29 icons inline, use ListItemImage on the image,
+	and primaryWImage on the text that follows.
+*/
+img.ListItemImage { margin-top: -5px; }
+.primaryWImage { position: relative; top: -7px; }
+
+/*	ICON MENU
+
+	Each row of buttons is a ul, and each button is an li.
+
+	A typical li looks like: 
+
+		<li><a><img>Label</a></li>
+
+	If your image is not a rounded 55x55px image, you will do this instead: 
+	
+		<li><a><div class="ImageWrapper"><img></div>Label</a></li>
+*/
+.IconMenu ul { font-size: 12px; float: left; margin: 0; padding: 0; position: relative; top: -13px; }
+.IconMenu ul li
+{	list-style-type: none; display: inline;
+	margin: 0 20px 0 0; padding: 0; float: left; height: 80px; width: 55px;
+	text-align: center; line-height: 16px; font-weight: bold;
+}
+.IconMenu ul li a 
+{	color: rgb( 189, 189, 206 ); font-weight: lighter;
+	position: relative;
+	width: 55px;
+	border: 1px solid black;
+	display: block;
+	padding-top: 60px;
+}
+.IconMenu ul li a img
+{	position: absolute; top: 0px; left: 0px;
+	width: 55px; height: 55px;
+	overflow: hidden;
+	border: 0;
+}
+.IconMenu ul li a .IconItemText
+{	position: relative; top: -8px; left: 0px;
+}
+.IconMenu ul li a .ImageRounder 
+{	position: absolute; top: -5px; left: -5px;
+	width: 48px; height: 48px;
+	border: 8px solid black; 
+	-webkit-border-radius: 14px; 
+	-moz-border-radius: 16px; 
+	z-index: 0;
+	background: transparent;
+}
+
+
+/*  Extra stuff added for iplay4e.
+*/
+div.IframePushpin { position:fixed; cursor:pointer; z-index:2000; top:-2px; right:2px; }
+div.NavLinkActions { position:fixed; cursor:pointer; z-index:2000; top:-2px; left:-4px; padding-left:6px; }
+div.NavLinkActions:hover { background:#BABC9D;border:thin solid #324420;width:92%;}
+div.NavLinkActionsHover .NavLinkActionsMenu {display:none; position:relative; top:2px; white-space:nowrap;}
+div.NavLinkActionsHover:hover .NavLinkActionsMenu {display:inline;}
+div.NavLinkActions span { display:block; margin-right:4px; cursor:pointer; padding-bottom:4px;}
+div.NavLinkActions span.MenuItem:hover { background:white; color: #324420; font-weight:bold; }
+
+div.NavLinkActionsHover:hover .NavLinkActionsHeader {background-color: #324420; color:white;margin-left:-6px;padding-left:6px;padding-bottom:10px;}
+div.NavLinkActionsHover .NavLinkActionsHeaderTitle {display:none;}
+div.NavLinkActionsHover:hover .NavLinkActionsHeaderTitle {display:inline;}
+
+/* Man, those images are hard to hit with your finger! */
+.CurrentVisible .ListItemImage { margin-left: 8px; }
+
+/* During a battle, the visible links depend on the state a character is in. */
+.CurrentVisible, .DelayedVisible, .ReadiedVisible { display: none; }
+.Current .CurrentVisible, .Delayed .DelayedVisible, .Readied .ReadiedVisible { display: inline; }
+
+/* So does the color of the character name, which should not be too long. */
+.Current .primaryWImage { color: #94B502; }
+.Delayed .primaryWImage { color: #750714; } 
+.Readied .primaryWImage { color: #7DA5D8; } 
+.CharacterName { max-width: 150px; } /* XXX this doesn't work! */
+
+/*	Hit Points:
+		- A mostly transparent flag at the left.
+		- Current hit points superimposed over it.
+		- A "death" bar that grows up to 100px widge.
+*/
+.FadedFlag { opacity: .25; }
+
+/* Also, one character may be having damaged applied at a time. 
+	When it's their lucky turn, their div is taller to allow for more elements.
+*/
+.EdgedList ul li.Damaged { height: 50px; }
+.DamagedVisible { display: none; } 
+.Damaged .DamagedVisible { display: block; padding-left: 10px; }
+.DamageHealBox { width: 30px; }
+
+/* When adding characters, the icon should be, by default, invisible. */
+.AddCharsList .secondary { display: none; }
+.AddCharsList .Selected .secondary { display: inline; }
+
+/*  Fix for wierd Firefox issue of a link sprouting up from never-never land. */
+.EdgedList ul li a .secondary a, 
+.RoundedList ul li a .secondary a 
+{   display:inline; color:inherit;
+}
+
+
+/* for iscroll */
+.ListWrapper { position:relative; z-index:1; height:360px; overflow:hidden; }
+
+.CriticalRoll {   color:red; text-decoration:underline; }
+.BeforeUL { border-bottom: 1px solid rgb( 217, 217, 217 ); padding: 10px; }
+.RollResult { color: #324F85; font-weight:normal; font-size:20px; }
+
+.EdgedList ul li.CharacterSummaryListItem { padding-top: 30px; }
+.EdgedList ul li.AbilitiesListItem { height:44px; }
+.EdgedList ul li.HitPointListItem { padding-top: 20px; }
+.EdgedList ul li.ConditionsListItem  { position:relative;top:-12px; }
+
+/* Browser support less then iphone width (specifically Opera Mini)*/
+@media handheld and (max-device-width: 319px),  screen and (max-device-width: 319px) {
+    /*
+   body, .jPintPageSet, .jPintPage, h1, .Notes textarea, .EdgedList ul,
+   {width:auto;}
+   .secondary {background-color: red;}
+    */
+}

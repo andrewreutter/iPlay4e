@@ -1,0 +1,82 @@
+application: iplay4e-hrd
+version: 42
+runtime: python
+api_version: 1
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^.*NO_UPLOAD.*
+
+handlers:
+- url: /_ah/queue/deferred
+  script: $PYTHON_LIB/google/appengine/ext/deferred/deferred.py
+  login: admin
+
+- url: /adsensetop/?
+  static_files: BUILTsrc/html/adsensetop.html
+  upload: BUILTsrc/html/adsensetop.html
+- url: /adsensetop-donated/?
+  static_files: BUILTsrc/html/adsensetop-donated.html
+  upload: BUILTsrc/html/adsensetop-donated.html
+- url: /adsensebottom/?
+  static_files: BUILTsrc/html/adsensebottom.html
+  upload: BUILTsrc/html/adsensebottom.html
+- url: /forums/main/?
+  static_files: BUILTsrc/html/forums.html
+  upload: BUILTsrc/html/forums.html
+- url: /characters/missingCompendium/?
+  static_files: BUILTsrc/html/missingCompendium.html
+  upload: BUILTsrc/html/missingCompendium.html
+- url: /fullpageInstructions.html
+  static_files: BUILTsrc/html/fullpageInstructions.html
+  upload: BUILTsrc/html/fullpageInstructions.html
+- url: /fullpageInstructions/?
+  static_files: BUILTsrc/html/fullpageInstructions.html
+  upload: BUILTsrc/html/fullpageInstructions.html
+- url: /143371090575/html/loading.html
+  static_files: BUILTsrc/html/loading.html
+  upload: BUILTsrc/html/loading.html
+  expiration: "3000d"
+- url: /143371090575/html/loadingSimple.html
+  static_files: BUILTsrc/html/loadingSimple.html
+  upload: BUILTsrc/html/loadingSimple.html
+  expiration: "3000d"
+
+- url: /143371090575/images
+  static_dir: BUILTsrc/images
+  expiration: "3000d"
+- url: /143371090575/css
+  static_dir: BUILTsrc/css
+  expiration: "3000d"
+- url: /143371090575/js
+  static_dir: BUILTsrc/js
+  expiration: "3000d"
+
+- url: /143371090575/xsl
+  static_dir: BUILTsrc/xsl
+  expiration: "3000d"
+
+- url: /crossdomain.xml
+  static_files: BUILTsrc/xml/crossdomain.xml
+  upload: BUILTsrc/xml/crossdomain.xml
+
+- url: /favicon.ico
+  static_files: BUILTsrc/images/favicon.ico
+  upload: BUILTsrc/images/favicon.ico
+- url: /apple-touch-icon.png
+  static_files: BUILTsrc/images/apple-touch-icon.png
+  upload: BUILTsrc/images/apple-touch-icon.png
+- url: /startup.png
+  static_files: BUILTsrc/images/startup.png
+  upload: BUILTsrc/images/startup.png
+
+- url: /.*
+  script: handlecgi.py

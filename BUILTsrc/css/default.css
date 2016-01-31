@@ -1,0 +1,46 @@
+img { behavior: url(/css/iepngfix.htc); border:0; }
+
+body { margin: 0 0 0 10px; min-width:525px; font-size: .8em; font-family: "Arial", sans-serif; padding: 35px 0 25px 0; }
+table { font-family: "Arial", sans-serif; font-size: 1em; }
+img { border: none; }
+
+textarea { width: 500px; height: 150px; }
+
+a:link, a:visited, a:active, a:hover { color: black; }
+a.disabled { color: #999; cursor: default; }
+a.NewModel { display: block; margin-bottom: 4px; margin-left: 10px; }
+div.TableWrapper { background: #eef; width: 99%; margin-bottom: 5px; float: right; }
+div.ManagementTableNav { margin: 4px 0 6px 10px; }
+    div.ManagementTableNav a.Pager { text-decoration: none; border: 1px solid #bbb; padding: 0 2px 0 2px; background: #eef; }
+    div.ManagementTableNav span.PageList { margin-right: 20px; }
+    div.ManagementTableNav a.disabled { background: #ccf; }
+
+div#userStatus { position: absolute; right: 10px; top: 5px; font-family: verdana; }
+div#management { width: 1114px;}
+
+div#managementNav { float: left; padding-top: 23px; width: 147px; min-height: 500px; font-family: verdana; }
+    div#managementNav a { display:block; width: 145px; padding: 2px 0 4px 3px; white-space:nowrap; }
+    div#managementNav a:hover { background: #eef; }
+    div#managementNav a.Active { background: #ccf; z-index:2;}
+    div#managementNav div.Explain { display:block; width: 125px; padding: 2px 0 4px 3px; white-space:normal; margin-left:20px;font-size:.8em;}
+    div#managementNav div.ExplainImportant {color:red;}
+
+div#managementBody { position: relative; float: left; width: 965px; min-height: 500px; background: #ccf; }
+div.SubManagementBody { margin-top: 0; white-space: normal; width: 100%; }
+div.ManagementPanes { position:relative; float: left; width: 100%; white-space: normal; }
+    div.ManagementPane { background: #ccf; top: 0; width: 100%; padding: 3px 0 1px 0; margin-bottom: 3px; white-space: normal; }
+    div.ManagementContent { position: relative; white-space: normal; }
+        div.ManagementContent table { width: 100%; }
+        div.ManagementContent th, div.managementContent td { padding: 0 2px 0 4px; vertical-align: top; white-space: nowrap;}
+        div.managementContent td.Wrappable { white-space: normal; }
+        div.ManagementContent th.Action, div.managementContent td.Action { width:60px; }
+            div.ManagementContent th.Action img, div.managementContent td.Action img { margin: 2px; }
+        div.ManagementContent th { text-align: left; }
+        div.ManagementContent td { border-top: 1px solid #ddd; margin: 0; }
+        div.ManagementContent tr.ShowsChildren td { border-top: 0 }
+    div.managementNew form, div.managementEdit form { padding-top: 0px; margin-left: 10px;}
+        div.managementNew form th, div.managementEdit form th { text-align: right; vertical-align: top; }
+        div.managementNew form td ul, div.managementEdit form td ul { padding: 0; margin: 0; }
+        div.managementNew form td li, div.managementEdit form td li { list-style-type: none; white-space: nowrap; }
+        div.managementNew form td ul.errorlist, div.managementEdit form td ul.errorlist { color: red; }
+        div.managementNew form td ul.errorlist li, div.managementEdit form td ul.errorlist li { list-style-type: none; display: inline; white-space: nowrap; }

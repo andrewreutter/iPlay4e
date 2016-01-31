@@ -1,0 +1,33 @@
+<sections title="Privacy Policy" flatten="flatten">
+    <section title="Google App Engine">
+        <item>
+            <content>
+                The iplay4e web site is a web application built on Google App Engine,
+                and as such incorporates the terms of the 
+                <a href="http://code.google.com/appengine/privacy.html">Google App Engine Privacy Notice</a>
+                as well as the 
+                <a href="http://www.google.com/privacy.html">Google Privacy Policy</a>.
+                Those terms describe the rights and limitations assigned to you and to Google
+                regarding your use of this application.
+            </content>
+        </item>
+    </section>
+    <section title="iPlay4e">
+        <item>
+            <content>
+                In addition, the following terms apply to iplay4e's use of your Google Account information:
+                <ul>
+                    <li>
+                        We will store only the email address and nickname of your Google account.
+                    </li>
+                    <li>
+                        We will not share or distribute that information with third parties.
+                    </li>
+                    <li>
+                        The only account information that will be displayed on iplay4e will be the portion of your email address preceeding the @ symbol. Example: if your Google Account is associated with the email address someone@somewhere.com, we will display only "someone".
+                    </li>
+                </ul>
+            </content>
+        </item>
+    </section>
+</sections>

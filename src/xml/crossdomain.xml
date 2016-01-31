@@ -1,0 +1,6 @@
+<?xml version="1.0"?> 
+<!-- http://iplay4e.appspot.com/crossdomain.xml --> 
+<cross-domain-policy> 
+  <allow-access-from domain="*.laughterforever.com"/> 
+  <allow-access-from domain="laughterforever.com"/> 
+</cross-domain-policy> 

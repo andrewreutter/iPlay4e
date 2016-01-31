@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>{{ modelClassName }} Management
+    <link type="text/css" rel="stylesheet" href="/css/default.css" />
+    <link type="text/css" rel="stylesheet" href="/css/modalbox.css" />
+    <link type="text/css" rel="stylesheet" href="/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="/css/print.css" media="print" />
+    <script type="text/javascript" language="javscript" src="/js/scriptaculous/lib/prototype.js"></script>
+    <script type="text/javascript" language="javscript" src="/js/scriptaculous/src/effects.js"></script>
+    <script type="text/javascript" language="javscript" src="/js/scriptaculous/src/controls.js"></script>
+    <script type="text/javascript" language="javscript" src="/js/modalbox.js"></script>
+    <script type="text/javascript" language="javscript" src="/js/metaculous.js"></script>
+    <script type="text/javascript" language="javscript" src="/js/EwgAJAX.js"></script>
+    <script type="text/javascript" language="javscript" src="/js/ewgappengine.js"></script>
+    <script type="text/javascript" language="javscript" src="/js/custom.js"></script>
+    <script type="text/javascript" language="javscript">
+        MODEL_CLASS_NAMES = $A({{ modelClassNames }});
+        MODEL_CLASS_NAME_NAMES = $A({{ modelClassNameNames }});
+    </script>
+</head>
+
+<body>
+{% if managementNav %}
+    <div id="userStatus">
+        <a href="{{ logoutUrl }}">Logout</a> {{ user.nickname }}
+    </div>
+    <div id="management">
+        <div id="managementNav">
+            {{ managementNav }}
+        </div>
+        <div id="managementBody">
+        </div>
+    </div>
+    <script>
+        Event.observe( window, 'load', initManagement );
+    </script>
+{% endif %}
+{% if pageBody %}
+    {{ pageBody }}
+{% endif %}
+</body>
+
+</html>

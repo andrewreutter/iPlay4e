@@ -1,0 +1,49 @@
+{% if numModels %}
+    <div class="ManagementTableNav">
+        <a {% if not hasPreviousPage %}
+                class="Pager disabled" 
+                onclick="return false;" 
+           {% else %} 
+                class="Pager"
+                onclick="fetchTablePage('{{ modelClassName }}', '{{ propertyName }}', '{{ parent }}', {{ previousPage }});return false;" 
+           {% endif %} 
+         href="" title="Previous page">&lt;</a>
+        <a {% if not hasNextPage %}
+                class="Pager disabled" 
+                onclick="return false;" 
+           {% else %} 
+                class="Pager"
+                onclick="fetchTablePage('{{ modelClassName }}', '{{ propertyName }}', '{{ parent }}', {{ nextPage }});return false;" 
+           {% endif %} 
+         href="" title="Next page">&gt;</a>
+        <span class="PageList">{{ firstOnPage }}-{{ lastOnPage }} of {{ numModels }}</span>
+        <a href="" 
+         onclick="MODEL_TOGGLES['modelToggle{{ modelClassName }}{{ parent }}'].toggle(1,null,null);return false;">New 
+         {{ modelClassDisplayName }}...</a>
+    </div>
+{% endif %}
+    <div class="TableWrapper">
+        {% if numModels %}
+            <table cellspacing="0">
+                <tr>
+                    <th class="Action">
+                    &nbsp;
+                    </th>
+                {% for attrName in modelClass.LIST_ITEM_LABELS %}
+                    <th>
+                        {{ attrName|capfirst }}
+                    </th>
+                {% endfor %}
+                    <th width="99%">&nbsp;</th>
+                </tr>
+                {{ listItems }}
+                <tr>
+                </tr>
+            </table>
+        {% endif %}
+    </div>
+{% if not numModels %}
+    <a class="NewModel" href="" 
+     onclick="MODEL_TOGGLES['modelToggle{{ modelClassName }}{{ parent }}'].toggle(1,null,null);return false;">New 
+     {{ modelClassDisplayName }}...</a>
+{% endif %}

@@ -1,0 +1,78 @@
+<Page title="Welcome to iPlay4e!">
+    <Intro>
+        The <i>iPlay4e</i> tools work with your 
+        <a target="insider" href="http://www.wizards.com/dnd/Tools.aspx"><u>D&#38;D Insider</u></a> 
+        subscription to bring tabletop gaming to the online and mobile worlds.
+        If you already have a Google account, just sign in
+        above to get started uploading your own characters.  If you don't, click the sign in
+        link anyway and you can create an account in just a few minutes.
+    </Intro>
+    <Section title="Play 4e Dungeons &#38; Dragons...">
+        <Item>
+            Join a campaign, or create one and invite your friends to join.
+            View everyone's character sheet.
+        </Item>
+        <Item>
+            Turn
+            <a target="insider" 
+             href="http://www.wizards.com/dnd/tool.aspx?x=dnd/4new/tool/characterbuilder">D&#38;Di 
+                Character Builder</a> files into interactive character sheets.
+            Diceless tabletop gaming is here!
+        </Item>
+        <Item>
+            Track hit points, power consumption, and more - everything
+            you need to play at the gaming table.
+        </Item>
+        <Item>
+            The built-in 
+            <a target="insider"
+             href="http://www.wizards.com/dnd/Tool.aspx?x=dnd/4new/tool/compendium">D&#38;Di Compendium</a>
+            browser lets you look up details for anything on the sheet without opening another window.
+        </Item>
+    </Section>
+    <Section title="...even on your mobile or offline...">
+        <Item>
+            <b style="color:red;">
+                NEW!
+            The native iOS app,
+            </b>
+            <a target="brindy"
+             href="http://www.brindysoft.com/projects/iplay4elive/">iPlay4e Live</a>,
+            lets you access your characters without an internet connection.
+        </Item>
+        <Item>
+            The mobile version of the site lets you keep your characters in your pocket.
+            Never forget your character sheet or dice again!
+        </Item>
+        <Item>
+            The native look-and-feel for iPhone and iPod Touch puts every character
+            detail just a touch away.
+        </Item>
+        <Item>
+            Install <a target="operamini" href="http://www.opera.com/mini/">Opera Mini</a>
+            on almost any mobile phone (Android, Blackberry, etc...) to
+            turn your mobile device into a gaming machine.
+        </Item>
+    </Section>
+    <Section title="...and share on the web">
+        <Item>
+            Search for characters by name, race, class, build, level.
+            Download <i>.dnd4e</i> files as the basis for your own characters.
+        </Item>
+        <Item>
+            Export characters to the
+            <a target="insider" href="http://community.wizards.com/">D&#38;Di community</a>,
+            <a target="somethingawful" 
+             href="http://forums.somethingawful.com/forumdisplay.php?forumid=103">Something Awful
+                play-by-post</a>,
+            and many other forums.
+        </Item>
+        <Item>
+            Embed and play characters and campaigns
+            in <a target="googlewave" href="http://wave.google.com">Google Wave</a>, 
+            on your <a target="igoogle" href="http://google.com/ig">iGoogle</a> home page,
+            on <a target="epicwords" href="http://epicwords.com">Epic Words</a>,
+            or any other web site.
+        </Item>
+    </Section>
+</Page>

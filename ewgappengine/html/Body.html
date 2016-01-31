@@ -1,0 +1,14 @@
+<div class="ManagementPanes" id="managementPanes{{ modelClassName }}{{ parent }}">
+    <div id="managementContent{{ modelClassName }}{{ parent }}" 
+     class="ManagementPane ManagementContent" style="display:none;">
+        {{ listHTML }}
+    </div>
+    <div id="managementNew{{ modelClassName }}{{ parent }}" style="display:none;" class="ManagementPane ManagementNew">
+        <div class="ManagementTableNav">
+            Creating new {{ modelClassDisplayName }}
+        </div>
+        {{ managementNew }}
+    </div>
+    <div id="managementEdit{{ modelClassName }}{{ parent }}" style="display:none;" class="ManagementPane ManagementEdit">
+    </div>
+</div>
