@@ -41,26 +41,26 @@ handlers:
 - url: /fullpageInstructions/?
   static_files: BUILTsrc/html/fullpageInstructions.html
   upload: BUILTsrc/html/fullpageInstructions.html
-- url: /145541695845/html/loading.html
+- url: /14554209684/html/loading.html
   static_files: BUILTsrc/html/loading.html
   upload: BUILTsrc/html/loading.html
   expiration: "3000d"
-- url: /145541695845/html/loadingSimple.html
+- url: /14554209684/html/loadingSimple.html
   static_files: BUILTsrc/html/loadingSimple.html
   upload: BUILTsrc/html/loadingSimple.html
   expiration: "3000d"
 
-- url: /145541695845/images
+- url: /14554209684/images
   static_dir: BUILTsrc/images
   expiration: "3000d"
-- url: /145541695845/css
+- url: /14554209684/css
   static_dir: BUILTsrc/css
   expiration: "3000d"
-- url: /145541695845/js
+- url: /14554209684/js
   static_dir: BUILTsrc/js
   expiration: "3000d"
 
-- url: /145541695845/xsl
+- url: /14554209684/xsl
   static_dir: BUILTsrc/xsl
   expiration: "3000d"
 
