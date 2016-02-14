@@ -82,7 +82,6 @@ activatePowerLink = function(charId, powerId, powerUrl, autoLoad)
             {   alert('no target frame (' + targetFrameId + ') or href (' + targetHrefId + ') found');
                 return;
             }
-            //alert('XXX' + targetHref);
             targetHref.href = targetUrl;
 
             if (autoLoad && !targetHref.compActivated)
@@ -90,7 +89,7 @@ activatePowerLink = function(charId, powerId, powerUrl, autoLoad)
                 var compendiumEntryLinkId = 'href' + charId + powerId;
                 activateCompendiumLink(targetHref);
                 targetHref.compActivated = 1;
-            };
+            }
 
             return;
         }
@@ -477,8 +476,8 @@ Object.extend(OwnedCharacter.prototype,
         new Ajax.Request('/poll',
         {   method: 'post', parameters: {t: this.polltime, key:this.charKey },
             onSuccess: function(response)
-            {   if (response.responseText) 
-                {   response.responseText.evalScripts();
+            {   if (response.responseText) {
+                    response.responseText.evalScripts();
                 }
             }.bindAsEventListener(this),
             onException: function(request, e)
