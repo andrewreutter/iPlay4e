@@ -223,7 +223,7 @@ class MainHandler(BaseInitializeHandler):
 
         powerPointsElement = healthElement.find('PowerPoints')
         powerPoints = 3 # unused
-        if not powerPointsElement:
+        if powerPointsElement is None:
             maxPowerPoints = 0
         else:
             maxPowerPoints = powerPointsElement.get('value', '')
