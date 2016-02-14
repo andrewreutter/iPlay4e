@@ -1,7 +1,7 @@
 import string, logging, time
 
 import wsgiref.handlers
-from django.utils import simplejson
+import json as simplejson
 from google.appengine.ext import webapp
 from google.appengine.api import users
 
