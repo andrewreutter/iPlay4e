@@ -37,7 +37,8 @@ class BaseInitializeHandler(BaseHandler.BaseHandler):
         modelDom = None
         if model:
             lettersAndDigits = string.letters + string.digits
-            modelKey = model.toDom().get('key') # because the actual model.key() might be different.
+            modelDom = model.toDom()
+            modelKey = modelDom.get('key') # because the actual model.key() might be different.
             #modelKey = str(model.key())
             safeKey = ''.join([k for k in modelKey if k in lettersAndDigits ])
 

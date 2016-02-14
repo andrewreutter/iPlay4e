@@ -7,14 +7,29 @@ import logging, re, cgi
 import IP4XML, IP4DB
 from ModelTypes import AuthorizedModel, SearchResult, HasSearchResults, HasIP4XML, HasCombatState
 
-class UserItemNote(db.Model):
+class MigratoryModel(db.Model):
+    """ Just like db.Model, except translates get() calls to HRD-style keys in case we get pre-HRD keys
+    """
+
+    def get(klass, key):
+
+        if type(key) == type([]):
+            newKey = [IP4DB.hrdKey(k) for k in key]
+        else:
+            newKey = IP4DB.hrdKey(key)
+
+        return db.Model.get(newKey)
+
+    get = classmethod(get)
+
+class UserItemNote(MigratoryModel):
 
     user_id = db.StringProperty(required=True)
     item_key = db.StringProperty(required=True)
     name = db.StringProperty(required=True)
     note = db.TextProperty()
 
-class UserPreferences(db.Model):
+class UserPreferences(MigratoryModel):
     owner = db.UserProperty(required=True)
     handle = db.StringProperty()
 
@@ -39,7 +54,7 @@ class UserPreferences(db.Model):
         return userPrefs
     getPreferencesForUser = classmethod(getPreferencesForUser)
 
-class DonatingUser(db.Model):
+class DonatingUser(MigratoryModel):
     """ We would like to have one of these for each user in the system, keyed by userId.
 
         We used to store them by userEmail, though, so th
@@ -86,7 +101,7 @@ class DonatingUser(db.Model):
 
     fromUser = classmethod(fromUser)
 
-class SiteCounters(db.Model):
+class SiteCounters(MigratoryModel):
     name = db.StringProperty(required=True)
     value = db.IntegerProperty(required=True)
 
@@ -108,7 +123,7 @@ class SiteCounters(db.Model):
         return ret
     nameToCounter = classmethod(nameToCounter)
 
-class Campaign(AuthorizedModel, HasSearchResults, HasIP4XML, HasCombatState, db.Model):
+class Campaign(AuthorizedModel, HasSearchResults, HasIP4XML, HasCombatState, MigratoryModel):
     PLURAL = 'Campaigns'
     XML_VERSION = 9
     xmlVersion = db.IntegerProperty()
@@ -232,7 +247,7 @@ class Campaign(AuthorizedModel, HasSearchResults, HasIP4XML, HasCombatState, db.
         return IP4XML.IP4CampaignTree(self)
 
 VERSIONED_CHARACTER_CLASS = 'CharacterV2'
-class CharacterV2(AuthorizedModel, HasSearchResults, HasIP4XML, HasCombatState, db.Model):
+class CharacterV2(AuthorizedModel, HasSearchResults, HasIP4XML, HasCombatState, MigratoryModel):
     PLURAL = 'Characters'
     XML_VERSION = 52
     xmlVersion = db.IntegerProperty()
@@ -533,7 +548,7 @@ class CharacterV2(AuthorizedModel, HasSearchResults, HasIP4XML, HasCombatState, 
 
         self.saveState(stateSaveDict, overrideCurrent=overrideCurrent, knownEmpty=knownEmpty)
 
-class CharacterCurrentValueV2(db.Model):
+class CharacterCurrentValueV2(MigratoryModel):
     """ Represent a single current value for a character.
     """
     character = db.Reference(CharacterV2, required=True)
@@ -546,7 +561,7 @@ class CharacterCurrentValueV2(db.Model):
     def textOrValue(self):
         return self.text or self.value
 
-class CampaignCharacter(db.Model):
+class CampaignCharacter(MigratoryModel):
     owner = db.UserProperty(required=True)
     campaign = db.ReferenceProperty(Campaign, collection_name='character_memberships')
     character = db.ReferenceProperty(CharacterV2, collection_name='campaign_memberships')
@@ -570,14 +585,14 @@ class CampaignCharacter(db.Model):
         except db.Error:
             return None
 
-class CampaignCustomTab(db.Model):
+class CampaignCustomTab(MigratoryModel):
 
     campaign = db.ReferenceProperty(Campaign, collection_name='campaign_custom_tabs')
     name = db.StringProperty(required=True)
     url = db.StringProperty(required=True)
     height = db.IntegerProperty(required=True, default=600)
 
-class Character(db.Model):
+class Character(MigratoryModel):
     """ Exists only to provide a migration path from old versions.
     """
 
@@ -650,7 +665,7 @@ class Character(db.Model):
 
         return model
 
-class CharacterCurrentValue(db.Model):
+class CharacterCurrentValue(MigratoryModel):
     """ Exists for migration from old values.
     """
     character = db.Reference(Character, required=True)
@@ -658,7 +673,7 @@ class CharacterCurrentValue(db.Model):
     value = db.StringProperty()
     modified = db.DateTimeProperty(auto_now=True)
 
-class EmailToUser(db.Model):
+class EmailToUser(MigratoryModel):
     user = db.UserProperty(required=True)
 
     def emailsToGoodUsers(thisClass, emailAddresses, returnBad=False):
@@ -679,7 +694,7 @@ class EmailToUser(db.Model):
         return (retUsers, badAddresses)
     emailsToGoodUsers = classmethod(emailsToGoodUsers)
 
-class ReportedUrl(db.Model):
+class ReportedUrl(MigratoryModel):
     
     character = db.StringProperty(required=True)
     url = db.StringProperty(required=True)
