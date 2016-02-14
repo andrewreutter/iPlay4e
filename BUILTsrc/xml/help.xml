@@ -90,7 +90,7 @@
                 convinced, <a href="#" onclick="$('randomProof').show();return false;"><u>look at this graph of results</u></a> 
                 generated using our algorithm:
                 <br/>
-                <img id="randomProof" src="/143371090575/images/random.png" style="display:none;" />
+                <img id="randomProof" src="/145541695845/images/random.png" style="display:none;" />
                 <br/>
                 Looks an awful lot like white noise, right?  You see, <i>iPlay4e</i> loves you!
             </content>

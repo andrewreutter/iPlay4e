@@ -18,7 +18,7 @@ class MainHandler(BaseHandler.BaseHandler):
         # First possibility is a search by user, who better be me (My Characters, My Monsters).
         if self.request.get('user'):
             if not user:
-                return self.sendCachedMainPage(143371090575)
+                return self.sendCachedMainPage(145541695845)
             searchRequest.setUser(user)
 
         # Although if I'm an admin, I can add "owner=foo@bar.com" to the URL for debugging.
@@ -58,7 +58,7 @@ class MainHandler(BaseHandler.BaseHandler):
         xmlString = StringIO.StringIO()
         elementTree.write(xmlString)
 
-        self.sendXMLWithCachedFullAndMobileStylesheets(xmlString.getvalue(), 143371090575,
+        self.sendXMLWithCachedFullAndMobileStylesheets(xmlString.getvalue(), 145541695845,
             'searchFull.xsl', 'searchMobile.xsl')
 
 class SearchResultsElementTree(ElementTree.ElementTree):

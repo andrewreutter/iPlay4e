@@ -4,7 +4,7 @@
  doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
  doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
-<xsl:include href="/143371090575/xsl/UI.xsl" />
+<xsl:include href="/145541695845/xsl/UI.xsl" />
 
 <xsl:template match="MultipleKeys">
     <xsl:variable name="keyList">
@@ -18,7 +18,7 @@
             <title><xsl:value-of select="Campaign/@name" /> - iplay4e</title>
             <xsl:apply-templates select="." mode="metatags" />
             <xsl:apply-templates select="." mode="cssfiles" />
-            <script type="text/javascript" language="javascript" src="/143371090575/js/combo.js"></script>
+            <script type="text/javascript" language="javascript" src="/145541695845/js/combo.js"></script>
             <!-- <xsl:apply-templates select="." mode="initscript" /> -->
             <script type="text/javascript" language="javascript">
                 connectQuestionsToAnswers();
@@ -60,7 +60,7 @@
                                 <div class="IconHolder" style="display:inline;"><!-- because spans are switchers -->
                                     <a href="#" class="IconLink" style="text-decoration:none;"
                                      onclick="viewAllCharacters('fullold', {{newWindows:true}});return false;">
-                                        <img src="/143371090575/images/eye.png" />
+                                        <img src="/145541695845/images/eye.png" />
                                         <u>Open in separate windows</u>
                                     </a>
                                 </div>

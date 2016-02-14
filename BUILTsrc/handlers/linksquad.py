@@ -103,7 +103,7 @@ class MainHandler(BaseHandler.BaseHandler):
                     <title>
                         iPlay4e Link Squad, Attack!
                     </title>
-                    <script type="text/javascript" language="javascript" src="/143371090575/js/combo.js"></script>
+                    <script type="text/javascript" language="javascript" src="/145541695845/js/combo.js"></script>
                 </head>
                 <body>
                     <h2>

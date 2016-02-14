@@ -5,5 +5,5 @@ from IP4ELibs import models, BaseHandler
 class MainHandler(BaseHandler.BaseHandler):
 
     def get(self):
-        self.sendXMLWithCachedFullAndMobileStylesheets(open('BUILTsrc/xml/new.xml').read(), 143371090575,
+        self.sendXMLWithCachedFullAndMobileStylesheets(open('BUILTsrc/xml/new.xml').read(), 145541695845,
             'plainFull.xsl', 'plainMobile.xsl')

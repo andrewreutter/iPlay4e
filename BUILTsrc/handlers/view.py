@@ -21,7 +21,7 @@ class BaseViewHandler(BaseHandler.BaseHandler):
         # and full views, because it was provided to us as a GET argument.  The reason
         # we still call this method is to leverage xslorcist for Android platforms.
         xslFile = '%(xslFile)s.xsl' % locals()
-        self.sendXMLWithCachedFullAndMobileStylesheets(theXML, '143371090575', xslFile, xslFile)
+        self.sendXMLWithCachedFullAndMobileStylesheets(theXML, '145541695845', xslFile, xslFile)
 
 class MainHandler(BaseViewHandler):
 
@@ -35,10 +35,10 @@ class MainHandler(BaseViewHandler):
             return self.response.out.write(\
             """ <html>
                 <head>
-                    <link rel="stylesheet" href="/143371090575/css/combo.css" type="text/css" media="screen, projection" />
-                    <link rel="stylesheet" href="/143371090575/css/blueprint/print.css" type="text/css" media="print" />
-                    <!--[if lt IE 8]><link rel="stylesheet" href="/143371090575/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-                    <script type="text/javascript" language="javascript" src="/143371090575/js/combo.js"></script>
+                    <link rel="stylesheet" href="/145541695845/css/combo.css" type="text/css" media="screen, projection" />
+                    <link rel="stylesheet" href="/145541695845/css/blueprint/print.css" type="text/css" media="print" />
+                    <!--[if lt IE 8]><link rel="stylesheet" href="/145541695845/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+                    <script type="text/javascript" language="javascript" src="/145541695845/js/combo.js"></script>
                     <script>
                         Event.observe(document, 'dom:loaded', function()
                         {   sizeParentIframeToMyContainer(20);
@@ -67,7 +67,7 @@ class MainHandler(BaseViewHandler):
                                             if (nameDisplay) $('nicknameDisplay').update(nameDisplay + ' | ');
                                         });
                                     </script>
-                                    <u><a class="SignInOut list" style="text-decoration:none;" href="#"><img src="/143371090575/images/DivLoadingSpinner.gif"/></a></u>
+                                    <u><a class="SignInOut list" style="text-decoration:none;" href="#"><img src="/145541695845/images/DivLoadingSpinner.gif"/></a></u>
                                 </span>
                             </div>
                         </div>

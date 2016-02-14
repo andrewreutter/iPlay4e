@@ -8,4 +8,4 @@ class MainHandler(BaseHandler.BaseHandler):
         user = users.get_current_user()
         if user:
             return self.redirect('/characters')
-        self.sendCachedMainPage(143371090575)
+        self.sendCachedMainPage(145541695845)

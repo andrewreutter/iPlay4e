@@ -60,11 +60,11 @@ div.ShortCompendiumBrowserDiv { background:white; height:auto; border:none; widt
 /* Header and Navigation */
 .IP4Sync { display:inline; position:relative; }
 .IP4Syncing
-{   background-image: url(/143371090575/images/DivLoadingSpinner.gif); 
+{   background-image: url(/145541695845/images/DivLoadingSpinner.gif); 
     background-repeat: no-repeat; background-position: 0 2px; 
 }
 .IP4SyncError
-{   background-image: url(/143371090575/images/exclamation-red-16.png); 
+{   background-image: url(/145541695845/images/exclamation-red-16.png); 
     background-repeat: no-repeat; background-position: 0 2px; 
 }
 
@@ -117,12 +117,12 @@ div.BloodiedMarker
 a.AddConditionLI 
 {   cursor:pointer;
     padding-left:18px;
-	background-image: url(/143371090575/images/plus_circle_small.png); 
+	background-image: url(/145541695845/images/plus_circle_small.png); 
     background-repeat: no-repeat; background-position: 4px 2px; 
 }
 .CUR_ConditionsDelete
 {   float:left; margin-right:10px; padding-left:13px; cursor:pointer;
-	background-image: url(/143371090575/images/minus_circle_small.png); 
+	background-image: url(/145541695845/images/minus_circle_small.png); 
     background-repeat: no-repeat; background-position: 0 2px; 
 }
 

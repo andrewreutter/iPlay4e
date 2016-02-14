@@ -34,13 +34,14 @@ class BaseInitializeHandler(BaseHandler.BaseHandler):
         self.response.headers['Content-Type'] = 'text/javascript'
 
         modelKey = safeKey = ''
+        modelDom = None
         if model:
             lettersAndDigits = string.letters + string.digits
             modelKey = model.toDom().get('key') # because the actual model.key() might be different.
             #modelKey = str(model.key())
             safeKey = ''.join([k for k in modelKey if k in lettersAndDigits ])
 
-        retDict = {'key':modelKey, 'safeKey':safeKey}
+        retDict = {'key':modelKey, 'safeKey':safeKey, 'dom':modelDom}
 
         authClass = AuthorizedModels.AuthorizedModel
         for ability, trueClass, falseClass, beforeClass in \
@@ -191,7 +192,7 @@ class MainHandler(BaseInitializeHandler):
                 """ % locals())
 
         # Pull pieces we need from the character tree for control purposes.
-        characterTree = model.toDom()
+        characterTree = initDict['dom']
         buildElement = characterTree.find('Build')
         currentExperience = buildElement.get('experience', '')
 

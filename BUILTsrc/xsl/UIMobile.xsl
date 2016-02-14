@@ -65,7 +65,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="apple-touch-startup-image" href="/startup.png" />
 
-        <link rel="stylesheet" type="text/css" charset="utf-8" href="/143371090575/css/jPint.css" />
+        <link rel="stylesheet" type="text/css" charset="utf-8" href="/145541695845/css/jPint.css" />
         <style type="text/css">
             .plaintext
             {   font-size:16px; font-weight:normal; margin:4px 10px;
@@ -75,7 +75,7 @@
             {   display:inline; text-decoration:underline; color:#6D84A2;
             }
             .EdgedList ul li ul li
-            {   list-style-image: url(/143371090575/images/d2016px.png);
+            {   list-style-image: url(/145541695845/images/d2016px.png);
                 list-style-position: inside; list-style-type:none;
                 padding-left: 20px; border-top:none;
                 line-height:auto; min-height:none; font-weight:normal;
@@ -86,7 +86,7 @@
             {   font-size:16px; font-weight:normal; margin:4px 10px;
             }
             .EdgedList ul li .mainplaintext
-            {   background-image: url(/143371090575/images/d2016px.png);
+            {   background-image: url(/145541695845/images/d2016px.png);
                 background-position: 2px left;
                 background-repeat: no-repeat;
                 padding-left: 20px;
@@ -94,8 +94,8 @@
             li .mainplaintext {margin:0 10px;}
         </style>
 
-        <script type="text/javascript" language="javascript" src="/143371090575/js/prototype/prototype.js" />
-        <script type="text/javascript" language="javascript" src="/143371090575/js/iplay4e.js" />
+        <script type="text/javascript" language="javascript" src="/145541695845/js/prototype/prototype.js" />
+        <script type="text/javascript" language="javascript" src="/145541695845/js/iplay4e.js" />
         <script type="text/javascript" language="javascript">
             makeLinksInternal = function()
             {   $$('a').findAll(function(a)

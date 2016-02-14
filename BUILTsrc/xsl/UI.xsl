@@ -18,7 +18,7 @@
     <span class="IconHolder" style="{$holderStyle}">
         <a href="#" class="IconLink {$titleClass}" style="{$titleStyle}">
             <xsl:if test="$icon!=''">
-                <img src="/143371090575/images/{$icon}" />
+                <img src="/145541695845/images/{$icon}" />
             </xsl:if>
 	    <!--<img src="{$icon}" />-->
             <xsl:choose>
@@ -54,7 +54,7 @@
         <span class="IconHolder">
             <a href="#" class="IconLink" 
              onclick="viewAllCharacters('fullold', {{newWindows:true}});return false;">
-                <img src="/143371090575/images/eye.png" />
+                <img src="/145541695845/images/eye.png" />
                 <u>Open in new windows</u>
             </a>
         </span>
@@ -82,7 +82,7 @@
         <title><xsl:value-of select="@name" /> - iplay4e</title>
         <xsl:apply-templates select="." mode="metatags" />
         <xsl:apply-templates select="." mode="cssfiles" />
-        <script type="text/javascript" language="javascript" src="/143371090575/js/combo.js"></script>
+        <script type="text/javascript" language="javascript" src="/145541695845/js/combo.js"></script>
         <script type="text/javascript" language="javascript">
             connectQuestionsToAnswers();
             Event.observe(document, 'dom:loaded', function() 
@@ -325,7 +325,7 @@
             />
             <br />
             <span class="Replacing" style="display:none;">
-                <img src="/143371090575/images/DivLoadingSpinner.gif"/> Uploading, please wait...
+                <img src="/145541695845/images/DivLoadingSpinner.gif"/> Uploading, please wait...
             </span>
         </form>
     </div>
@@ -486,9 +486,9 @@
 </xsl:template>
 
 <xsl:template match="Character | Campaign" mode="cssfiles">
-    <link rel="stylesheet" href="/143371090575/css/combo.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="/143371090575/css/blueprint/print.css" type="text/css" media="print" />
-    <!--[if lt IE 8]><link rel="stylesheet" href="/143371090575/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+    <link rel="stylesheet" href="/145541695845/css/combo.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/145541695845/css/blueprint/print.css" type="text/css" media="print" />
+    <!--[if lt IE 8]><link rel="stylesheet" href="/145541695845/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 </xsl:template>
 
 <xsl:template match="Character" mode="initiativeAndSpeed">
@@ -537,8 +537,8 @@
 
 <xsl:template match="Character" mode="utilities">
     <div id="preloader">
-        <img src="/143371090575/images/DivLoadingSpinner.gif" />
-        <img src="/143371090575/images/exclamation-red-16.png" />
+        <img src="/145541695845/images/DivLoadingSpinner.gif" />
+        <img src="/145541695845/images/exclamation-red-16.png" />
     </div>
     <div class="IP4Sync IP4SyncPrompt {@safe-key}EditorOnly" style="display:none;">
         <xsl:text>&#xA0;&#xA0;&#xA0;&#xA0;</xsl:text>
@@ -608,7 +608,7 @@
         };
     </script>
     <form action="#" onsubmit="$(this).down('.StraightDie').fire('click'); return false;">
-        <img src="/143371090575/images/d2016px.png"
+        <img src="/145541695845/images/d2016px.png"
             style="position:absolute; top:3px; left:3px;"
         />
         <input type="submit" value="Roll" class="StraightDie Roller dice1d20plus0Custom"
@@ -745,7 +745,7 @@
                                 <a href="#" class="Button DamageButton" 
                                     style="*padding-bottom:4px; width:150px; margin-left:0px;"
                                     onclick="{Health/MaxHitPoints/@damage-prompt-script};hideMenus();return false;"
-                                ><img src="/143371090575/images/minus_circle_small.png"
+                                ><img src="/145541695845/images/minus_circle_small.png"
                                   style="position:relative;top:0; margin-left:2px; margin-right:2px;"
                                  />Damage</a>
                                 <a href="#" class="Button DamageButton" style="*padding-bottom:4px; width:150px;"
@@ -829,7 +829,7 @@
                     }});
                     return false;
                     "
-                ><img src="/143371090575/images/plus_circle_small.png"
+                ><img src="/145541695845/images/plus_circle_small.png"
                   style="position:relative;top:0; margin-left:2px; margin-right:2px;"
                  />Heal<small>&#9660;</small>
                 </a>
@@ -837,14 +837,14 @@
                 <a href="#" class="Button DamageButton" 
                     style="*padding-bottom:4px; margin-left:4px;"
                     onclick="{Health/MaxSurges/@subtract-script};return false;"
-                ><img src="/143371090575/images/minus_circle_small.png"
+                ><img src="/145541695845/images/minus_circle_small.png"
                   style="position:relative;top:0; margin-left:2px; margin-right:2px;"
                  />Spend
                 </a>
 
                 <a href="#" class="Button DamageButton" style="*padding-bottom:4px;"
                  onclick="{Health/MaxSurges/@add-script};return false;"
-                ><img src="/143371090575/images/plus_circle_small.png"
+                ><img src="/145541695845/images/plus_circle_small.png"
                   style="position:relative;top:0; margin-left:2px; margin-right:2px;"
                  />Regain</a>
             </span>
@@ -1945,7 +1945,7 @@
         <xsl:with-param name="body">
             <xsl:choose>
                 <xsl:when test="Enhancement">
-                    <iframe class="NoWeapons" src="/143371090575/html/loadingSimple.html"
+                    <iframe class="NoWeapons" src="/145541695845/html/loadingSimple.html"
                      name="iframe{../../@safe-key}{generate-id(Enhancement/@name)}" 
                      id="iframe{../../@safe-key}{generate-id(Enhancement/@name)}" 
                      style="padding:0;height:241px;" frameborder="no"
@@ -1973,14 +1973,14 @@
                         });
                     </script>
 
-                    <iframe class="NoWeapons" src="/143371090575/html/loadingSimple.html"
+                    <iframe class="NoWeapons" src="/145541695845/html/loadingSimple.html"
                      name="iframe{../../@safe-key}{generate-id(@name)}" 
                      id="iframe{../../@safe-key}{generate-id(@name)}" 
                      style="padding:0;height:241px;" frameborder="no"
                     />
                 </xsl:when>
                 <xsl:otherwise>
-                    <iframe class="NoWeapons" src="/143371090575/html/loadingSimple.html"
+                    <iframe class="NoWeapons" src="/145541695845/html/loadingSimple.html"
                      name="iframe{../../@safe-key}{generate-id(@name)}" 
                      id="iframe{../../@safe-key}{generate-id(@name)}" 
                      style="padding:0;" frameborder="no" />
@@ -2427,7 +2427,7 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <iframe class="HasWeapons" style="padding:0;" frameborder="no"
-                     src="/143371090575/html/loadingSimple.html"
+                     src="/145541695845/html/loadingSimple.html"
                      name="iframe{../../@safe-key}{generate-id(@name)}" 
                      id="iframe{../../@safe-key}{generate-id(@name)}" />
                 </xsl:otherwise>
@@ -2682,7 +2682,7 @@
                         if (nameDisplay) $('nicknameDisplay').update(nameDisplay + ' | ');
                     });
                 </script>
-                <u><a class="SignInOut list" style="text-decoration:none;" href="#"><img src="/143371090575/images/DivLoadingSpinner.gif"/></a></u>
+                <u><a class="SignInOut list" style="text-decoration:none;" href="#"><img src="/145541695845/images/DivLoadingSpinner.gif"/></a></u>
                 |
             </span>
             <xsl:value-of select="@world" /> 
@@ -2787,7 +2787,7 @@
         <div class="span-16 last CampaignCharacterList">
             <h3 class="{@safe-key}OwnerOnly" style="display:none;float:right;margin:6px 6px;">
                 <span 
-                 style="padding-left:15px; background-image: url(/143371090575/images/plus_circle_small.png); background-repeat: no-repeat; background-position: 0 2px; cursor:pointer;"
+                 style="padding-left:15px; background-image: url(/145541695845/images/plus_circle_small.png); background-repeat: no-repeat; background-position: 0 2px; cursor:pointer;"
                  onclick="$(this).up('.CampaignCharacterList').next('.CampaignCharacterAdd').hide(); var next = $($(this).up('.CampaignCharacterList').next('.CampaignPlayerAdd')); (next.visible() ? next.hide() : next.show()); $('campaignPlayersText').focus(); sizeCampaignPanels();"
                 >   
                 Add players...
@@ -2795,7 +2795,7 @@
             </h3>
             <h3 class="{@safe-key}MemberOnly" style="display:none;margin:6px 6px;">
                 <span 
-                 style="padding-left:15px; background-image: url(/143371090575/images/plus_circle_small.png); background-repeat: no-repeat; background-position: 0 2px; cursor:pointer;"
+                 style="padding-left:15px; background-image: url(/145541695845/images/plus_circle_small.png); background-repeat: no-repeat; background-position: 0 2px; cursor:pointer;"
                  onclick="$(this).up('.CampaignCharacterList').next('.CampaignPlayerAdd').hide(); var next = $($(this).up('.CampaignCharacterList').next('.CampaignCharacterAdd')); (next.visible() ? next.hide() : next.show()); sizeCampaignPanels();"
                 >   
                 Add characters...
@@ -2879,7 +2879,7 @@
         <div class="span-24 last" style="text-align:center;overflow:hidden;">
             <iframe scrolling="no" frameborder="no" id="{@key}characterSheetsFrame" name="{@key}characterSheetsFrame"
              style="height:100px;width:950px;position:relative;left:0;overflow:hidden;"
-             src="/143371090575/html/loading.html"
+             src="/145541695845/html/loading.html"
             > </iframe>
             <form id="{@key}characterSheetsForm" style="display:none;" target="{@key}characterSheetsFrame" action="/views">
                 <input type="hidden" name="xsl" value="characterSheets" />
@@ -2899,7 +2899,7 @@
     <div class="span-24 last" style="text-align:center;overflow:hidden;">
         <iframe scrolling="no" frameborder="no" id="{@key}partyToolsFrame" name="{@key}partyToolsFrame"
          style="height:100px;width:950px;position:relative;left:0;overflow:hidden;"
-         src="/143371090575/html/loading.html"
+         src="/145541695845/html/loading.html"
         > </iframe>
         <form id="{@key}partyToolsForm" style="display:none;" target="{@key}partyToolsFrame" action="/views">
             <input type="hidden" name="xsl" value="partyTools" />
@@ -2918,7 +2918,7 @@
     <div class="span-24 last {@safe-key}OwnerOnly" style="overflow:hidden;">
         <iframe scrolling="auto" frameborder="no" id="{@key}inCombatFrame" name="{@key}inCombatFrame"
          style="height:745px;width:950px;position:relative;overflow:hidden;"
-         src="/143371090575/html/loading.html"
+         src="/145541695845/html/loading.html"
         > </iframe>
         <form id="{@key}inCombatForm" style="display:none;" target="{@key}inCombatFrame" method="POST"
          action="http://laughterforever.com/inCombat/ip4_inCombat.html"
@@ -2992,7 +2992,7 @@
             <xsl:otherwise>
                 <span class="{@safe-key}OwnerOnly" id="groupActivator" style="display:none;">
                     <a href="/view?key={@key}&amp;xsl=group">
-                        <img src="/143371090575/images/plus_circle_small.png" /> Add Group
+                        <img src="/145541695845/images/plus_circle_small.png" /> Add Group
                     </a>
                 </span>
             </xsl:otherwise>
@@ -3012,7 +3012,7 @@
             <xsl:otherwise>
                 <span class="{@safe-key}OwnerOnly" id="wikiActivator" style="display:none;">
                     <a href="/view?key={@key}&amp;xsl=wiki">
-                        <img src="/143371090575/images/plus_circle_small.png" /> Add Wiki
+                        <img src="/145541695845/images/plus_circle_small.png" /> Add Wiki
                     </a>
                 </span>
             </xsl:otherwise>
@@ -3032,7 +3032,7 @@
             <xsl:otherwise>
                 <span class="{@safe-key}OwnerOnly" id="blogActivator" style="display:none;">
                     <a href="/view?key={@key}&amp;xsl=blog">
-                        <img src="/143371090575/images/plus_circle_small.png" /> Add Blog
+                        <img src="/145541695845/images/plus_circle_small.png" /> Add Blog
                     </a>
                 </span>
             </xsl:otherwise>
@@ -3045,7 +3045,7 @@
              {{     
                     window.open(a.href, a.innerHTML, '');
              }});">
-                <img src="/143371090575/images/eye.png" />
+                <img src="/145541695845/images/eye.png" />
                 <u>Open tabs in separate windows</u>
             </a>
         </div>
@@ -3092,7 +3092,7 @@
             <span class="{../../@safe-key}OwnerOnly" style="display:none;">
                 <div class="primary">
                     <span class="RemoveCharacterLink" id="{@key}"
-                     style="padding-left:10px; cursor:pointer; background-image: url(/143371090575/images/minus_circle_small.png); background-repeat: no-repeat; background-position: 0 2px;"
+                     style="padding-left:10px; cursor:pointer; background-image: url(/145541695845/images/minus_circle_small.png); background-repeat: no-repeat; background-position: 0 2px;"
                     >
                         <xsl:text>&#xA0;</xsl:text>
                     </span>
@@ -3146,7 +3146,7 @@
                         <xsl:value-of select="$displayname" />
                     </span>
                     <span class="RemovePlayerLink" id="{@id}"
-                     style="margin-left: 4px; padding-left:10px; cursor:pointer; background-image: url(/143371090575/images/minus_circle_small.png); background-repeat: no-repeat; background-position: 0% 100%; position:relative; top:-1px;"
+                     style="margin-left: 4px; padding-left:10px; cursor:pointer; background-image: url(/145541695845/images/minus_circle_small.png); background-repeat: no-repeat; background-position: 0% 100%; position:relative; top:-1px;"
                     >
                         <xsl:text>&#xA0;</xsl:text>
                     </span>

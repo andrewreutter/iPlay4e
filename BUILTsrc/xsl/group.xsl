@@ -4,12 +4,12 @@
  doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
  doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
-<xsl:include href="/143371090575/xsl/UI.xsl" />
+<xsl:include href="/145541695845/xsl/UI.xsl" />
 
 <xsl:template match="Campaign">
     <html>
         <head>
-            <link rel="stylesheet" href="/143371090575/css/gfdynamicfeedcontrol.css" type="text/css" />
+            <link rel="stylesheet" href="/145541695845/css/gfdynamicfeedcontrol.css" type="text/css" />
         </head>
         <xsl:apply-templates select="." mode="header" />
         <body class="CharacterOuterDiv FullPageSheet">
@@ -57,7 +57,7 @@
                                 <div class="span-20 last" style="text-align:right;">
                                     <h4 style="margin:3px 6px;display:inline;">
                                         <a class="Button" target="forumWin" href="http://groups.google.com/group/{@groupUrl}/post">
-                                            <img src="/143371090575/images/plus_circle_small.png" /> New Post
+                                            <img src="/145541695845/images/plus_circle_small.png" /> New Post
                                         </a>
                                     </h4>
                                     <form action="http://groups.google.com/group/{@groupUrl}/boxsubscribe" target="forumWin"

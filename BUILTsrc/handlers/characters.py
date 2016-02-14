@@ -6,7 +6,7 @@ class MainHandler(BaseHandler.BaseHandler):
     def get(self):
         user = users.get_current_user()
         if not user:
-            return self.sendCachedMainPage(143371090575)
+            return self.sendCachedMainPage(145541695845)
 
         owner = self.request.get('owner', None)
         owner = owner and ('&owner=%s' % owner) or ''

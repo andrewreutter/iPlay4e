@@ -4,7 +4,7 @@
  doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
  doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
-<xsl:include href="/143371090575/xsl/UIMobile.xsl" />
+<xsl:include href="/145541695845/xsl/UIMobile.xsl" />
 
 <!-- MAIN -->
 
@@ -17,7 +17,7 @@
             <meta name="viewport" content="user-scalable=no, width=device-width" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
 
-            <link rel="stylesheet" type="text/css" charset="utf-8" href="/143371090575/css/jPint.css" />
+            <link rel="stylesheet" type="text/css" charset="utf-8" href="/145541695845/css/jPint.css" />
             <style>
                 /* Header and Navigation */
                 .IP4Sync { position:absolute; top:0; left:0; height:8px; width:100%; z-index: 1000; }
@@ -82,12 +82,12 @@
                 .EdgedList ul li.noTop { border-top:none; }
 
                 .EdgedList ul li.Roller
-                {	background-image: url(/143371090575/images/d2024px.png); background-repeat: no-repeat; background-position: 97% 8px; 
+                {	background-image: url(/145541695845/images/d2024px.png); background-repeat: no-repeat; background-position: 97% 8px; 
                 }
                 .EdgedList ul li.Roller .secondary { margin-right:12%; }
 
                 .EdgedList ul li.withHelp
-                {	background-image: url(/143371090575/images/question_frame.png); background-repeat: no-repeat; background-position: 96% 12px; 
+                {	background-image: url(/145541695845/images/question_frame.png); background-repeat: no-repeat; background-position: 96% 12px; 
                 }
 
                 .EdgedList ul li.withHelp .secondary { margin-right:11%; margin-bottom:12px; }
@@ -95,13 +95,13 @@
                 body:last-child .EdgedList ul li.withHelp .secondary { margin-bottom:auto; }
 
                 #<xsl:value-of select="@key" />skills ul li.withHelp
-                {	background-image: url(/143371090575/images/question_frame.png); background-repeat: no-repeat; background-position: 96% 0; 
+                {	background-image: url(/145541695845/images/question_frame.png); background-repeat: no-repeat; background-position: 96% 0; 
                 }
 
                 .EdgedList ul li.ActiveLI,
                 .EdgedList ul li#AddConditionLI
                 {	cursor:pointer;
-	                background-image: url(/143371090575/images/plus_circle.png); background-repeat: no-repeat; background-position: 96% 12px; 
+	                background-image: url(/145541695845/images/plus_circle.png); background-repeat: no-repeat; background-position: 96% 12px; 
                 }
                 .EdgedList ul li#AddConditionLI .secondary { margin-right:13%; }
 
@@ -109,7 +109,7 @@
                 .EdgedList ul li .<xsl:value-of select="Health/@conditions-display-class" /> { margin-top:0; }
                 .CUR_ConditionsDelete
                 {   padding-left:24px;
-	                background-image: url(/143371090575/images/minus_circle.png); background-repeat: no-repeat; background-position: 0 0; 
+	                background-image: url(/145541695845/images/minus_circle.png); background-repeat: no-repeat; background-position: 0 0; 
                     cursor:pointer;
                     margin-top:3px; margin-bottom:3px;
                 }
@@ -158,8 +158,8 @@
 
             </style>
 
-            <script type="text/javascript" language="javascript" src="/143371090575/js/combo.js" />
-            <script type="text/javascript" language="javascript" src="/143371090575/js/jPint.js" />
+            <script type="text/javascript" language="javascript" src="/145541695845/js/combo.js" />
+            <script type="text/javascript" language="javascript" src="/145541695845/js/jPint.js" />
             <script type="text/javascript" language="javascript">
                 Event.observe(document, 'dom:loaded', function()
                 {   
@@ -788,7 +788,7 @@
             <h2>
                 <div>
                     <a href="{@enhancementurl}" target="{generate-id(@name)}">
-                        <div class="HelpH2Link"><img src="/143371090575/images/question_frame.png" /></div>
+                        <div class="HelpH2Link"><img src="/145541695845/images/question_frame.png" /></div>
                         <xsl:value-of select="@name" />
                     </a>
                 </div>
@@ -798,7 +798,7 @@
             <h2>
                 <div>
                     <a href="{@weaponurl}" target="{generate-id(@name)}">
-                        <div class="HelpH2Link"><img src="/143371090575/images/question_frame.png" /></div>
+                        <div class="HelpH2Link"><img src="/145541695845/images/question_frame.png" /></div>
                         <xsl:value-of select="@name" />
                     </a>
                 </div>
@@ -1088,7 +1088,7 @@
                              target="{generate-id(Item[@name='Ritual Book']/@name)}">
                                 <h2>
                                     <div>
-                                        <div class="HelpH2Link"><img src="/143371090575/images/question_frame.png" /></div>
+                                        <div class="HelpH2Link"><img src="/145541695845/images/question_frame.png" /></div>
                                         <xsl:value-of select="Item[@name='Ritual Book']/@name" />
                                     </div>
                                 </h2>
@@ -1487,7 +1487,7 @@
     <h2>
         <div>
             <a href="{@url}" target="{generate-id(@name)}">
-                <div class="HelpH2Link"><img src="/143371090575/images/question_frame.png" /></div>
+                <div class="HelpH2Link"><img src="/145541695845/images/question_frame.png" /></div>
                 <xsl:value-of select="@name" />
             </a>
         </div>
@@ -1683,17 +1683,17 @@
         </div>
 
         <div class="TitlePageLinks">
-            <a class="Die" href="#{$character/@key}dice"><img src="/143371090575/images/d2024px.png" /></a>
+            <a class="Die" href="#{$character/@key}dice"><img src="/145541695845/images/d2024px.png" /></a>
             <a class="TitleNav TitleNavBuild Active" href="#{$character/@key}build" style="margin-left:11px;"
-             title="Build (level, XP, race, class, paragon path, epic destiny)"><img src="/143371090575/images/build.png" /></a>
+             title="Build (level, XP, race, class, paragon path, epic destiny)"><img src="/145541695845/images/build.png" /></a>
             <a class="TitleNav TitleNavMain" href="#{$character/@key}main"
-             title="Other (feats, skills, abilities, alignment, vision, size, languages, proficiencies)"><img src="/143371090575/images/lists.png" /></a>
+             title="Other (feats, skills, abilities, alignment, vision, size, languages, proficiencies)"><img src="/145541695845/images/lists.png" /></a>
             <a class="TitleNav TitleNavLoot" href="#{$character/@key}loot"
-             title="Loot (money, daily magic item uses, armor, weapons, magic items, equipment)"><img src="/143371090575/images/loot.png" /></a>
+             title="Loot (money, daily magic item uses, armor, weapons, magic items, equipment)"><img src="/145541695845/images/loot.png" /></a>
             <a class="TitleNav TitleNavCombat" href="#{$character/@key}combat"
-             title="Combat (initiative, speed, defenses, conditions, HP, surges, rest, immediate actions)"><img src="/143371090575/images/combat.png" /></a>
+             title="Combat (initiative, speed, defenses, conditions, HP, surges, rest, immediate actions)"><img src="/145541695845/images/combat.png" /></a>
             <a class="TitleNav TitleNavPowers" href="#{$character/@key}powers"
-             title="Powers (by action type and usage)"><img src="/143371090575/images/powers.png" /></a>
+             title="Powers (by action type and usage)"><img src="/145541695845/images/powers.png" /></a>
             <xsl:text>&#160;</xsl:text>
         </div>
 
