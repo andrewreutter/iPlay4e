@@ -62,7 +62,7 @@ REPORT_URLS = [];
 // urlGetDict: c, i, etc...all the info for a reportedurl
 // powerLink: optionally override the link whose URL will get "fixed"
 registerReportUrl = function(targetElement, urlGetDict, powerLink) {   
-    var powerLink = powerLink || powerLink + urlGetDict.c + urlGetDict.i;
+    var powerLink = powerLink || 'powerlink' + urlGetDict.c + urlGetDict.i;
     REPORT_URLS.push([targetElement, urlGetDict, powerLink]);
 };
 processReportUrls = function()
