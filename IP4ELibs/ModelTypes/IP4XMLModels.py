@@ -35,7 +35,12 @@ class HasIP4XML:
     def toDom(self):
         """ Get my DOM, preferable by parsing stored IP4XML, but if necessary by building (and storing) it.
         """
-        return self.ip4XML and self.buildDomFromIP4XML() or self.saveDom(self.buildDom())
+
+        if self.ip4XML:
+            ret = self.buildDomFromIP4XML()
+        else:
+            ret = self.saveDom(self.buildDom())
+        return ret
 
     def saveDom(self, theDom):
         stringIO = StringIO.StringIO()

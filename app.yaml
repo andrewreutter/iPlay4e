@@ -1,5 +1,5 @@
 application: iplay4e-hrd
-version: 46
+version: 47
 runtime: python27
 api_version: 1
 threadsafe: false
@@ -42,26 +42,26 @@ handlers:
 - url: /fullpageInstructions/?
   static_files: BUILTsrc/html/fullpageInstructions.html
   upload: BUILTsrc/html/fullpageInstructions.html
-- url: /145548699612/html/loading.html
+- url: /145548812689/html/loading.html
   static_files: BUILTsrc/html/loading.html
   upload: BUILTsrc/html/loading.html
   expiration: "3000d"
-- url: /145548699612/html/loadingSimple.html
+- url: /145548812689/html/loadingSimple.html
   static_files: BUILTsrc/html/loadingSimple.html
   upload: BUILTsrc/html/loadingSimple.html
   expiration: "3000d"
 
-- url: /145548699612/images
+- url: /145548812689/images
   static_dir: BUILTsrc/images
   expiration: "3000d"
-- url: /145548699612/css
+- url: /145548812689/css
   static_dir: BUILTsrc/css
   expiration: "3000d"
-- url: /145548699612/js
+- url: /145548812689/js
   static_dir: BUILTsrc/js
   expiration: "3000d"
 
-- url: /145548699612/xsl
+- url: /145548812689/xsl
   static_dir: BUILTsrc/xsl
   expiration: "3000d"
 
