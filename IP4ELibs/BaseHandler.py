@@ -2,7 +2,7 @@
 
 import StringIO, urllib
 
-from django.utils import simplejson
+import json as simplejson
 import wsgiref.handlers
 from google.appengine.ext import webapp, db
 from google.appengine.api import users, datastore_errors, urlfetch, urlfetch_stub

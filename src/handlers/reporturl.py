@@ -1,4 +1,4 @@
-from django.utils import simplejson
+import json as simplejson
 from google.appengine.api import users, mail
 
 from IP4ELibs import models, BaseHandler

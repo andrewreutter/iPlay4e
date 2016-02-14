@@ -5,7 +5,7 @@ import StringIO, string
 import wsgiref.handlers
 from google.appengine.ext import webapp
 from google.appengine.api import users
-from django.core.paginator import ObjectPaginator
+from django.core.paginator import Paginator as ObjectPaginator
 
 from IP4ELibs import BaseHandler, models
 from IP4ELibs.ModelTypes import SearchModels

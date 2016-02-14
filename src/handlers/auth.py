@@ -1,5 +1,5 @@
 from google.appengine.api import users
-from django.utils import simplejson
+import json as simplejson
 
 from IP4ELibs.ModelTypes import SearchModels
 from IP4ELibs import models, BaseHandler

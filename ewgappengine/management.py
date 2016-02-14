@@ -4,7 +4,8 @@ from google.appengine.api import users, images
 from google.appengine.ext.webapp import template
 from ewgappengine import db, djangoforms
 from google.appengine.api import memcache
-from django.core.paginator import ObjectPaginator, InvalidPage
+from django.core.paginator import Paginator as ObjectPaginator
+from django.core.paginator import InvalidPage
 from handlers import AuthenticatingHandler
 
 class ManagementHandler(AuthenticatingHandler):
