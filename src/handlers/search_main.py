@@ -86,29 +86,29 @@ class SearchResultsElementTree(ElementTree.ElementTree):
         self.user, self.handler = user, handler
         self.rootNode = rootNode = ElementTree.Element('SearchResults')
         ElementTree.ElementTree.__init__(self, rootNode)
-
-        rootNode.set('title', title)
-        rootNode.set('pagelessUrl', self.getPagelessUrlFromHandler(handler))
+        pagelessUrl = self.getPagelessUrlFromHandler(handler)
 
         # Don't limit the number of results if viewing the characters in a campaign.
         hitsPerPage = handler.request.get('campaign', None) and 100 or self.HITS_PER_PAGE
-        paginator = ObjectPaginator(searchResults, hitsPerPage, orphans=self.ORPHANS_PER_PAGE)
-
         pageNumber = int(handler.request.get('p', '1'))
-        numPages = paginator.pages
-        pageNumber = min(numPages, pageNumber)
-        pageNumber0 = pageNumber - 1
 
-        firstOnPage, lastOnPage, numResults = \
-            paginator.first_on_page(pageNumber0), paginator.last_on_page(pageNumber0), paginator.hits
-        firstOnPage = lastOnPage and firstOnPage or 0 # so firstOnPage isn't 1 when there are 0 results
+        paginator = ObjectPaginator(searchResults, hitsPerPage, orphans=self.ORPHANS_PER_PAGE)
+        numResults = paginator.count
+        if numResults:
+            page = paginator.page(pageNumber)
+            object_list = page.object_list
+            firstOnPage, lastOnPage, numPages = page.start_index(), page.end_index(), paginator.num_pages
+        else:
+            object_list = []
+            firstOnPage = lastOnPage = 0
+            numPages = 1
 
         localVars = locals()
-        for thisVar in ('numResults', 'numPages', 'pageNumber', 'firstOnPage', 'lastOnPage'):
+        for thisVar in ('title', 'pagelessUrl', 'numResults', 'numPages', 'pageNumber', 'firstOnPage', 'lastOnPage'):
             rootNode.set(thisVar, str(localVars[thisVar]))
 
         try:
-            [ self.addResult(thisResult, user) for thisResult in paginator.get_page(pageNumber0) ]
+            [ self.addResult(thisResult, user) for thisResult in object_list ]
         except AttributeError:
             raise
             raise RuntimeError, 'expecting searchResults, got %(searchResults)r' % locals()
