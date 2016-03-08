@@ -56,7 +56,10 @@ class MainHandler(BaseHandler.BaseHandler):
         elementTree = SearchResultsElementTree(searchResults, self, searchTitle, user)
 
         xmlString = StringIO.StringIO()
-        elementTree.write(xmlString)
+        try:
+            elementTree.write(xmlString)
+        except TypeError, errorString:
+            raise TypeError, (errorString, user, searchTitle, searchResults)
 
         self.sendXMLWithCachedFullAndMobileStylesheets(xmlString.getvalue(), TIME_TOKEN,
             'searchFull.xsl', 'searchMobile.xsl')
@@ -66,7 +69,7 @@ class SearchResultsElementTree(ElementTree.ElementTree):
     ORPHANS_PER_PAGE = 3
 
     def getPagelessUrlFromHandler(self, handler):
-        baseUrl = handler.requestIsMobile() and handler.request.url or handler.request.referrer
+        baseUrl = handler.requestIsMobile() and handler.request.url or handler.request.referrer or ''
         urlPieces = baseUrl.split('?')
         if len(urlPieces) == 2:
             path, queryString = urlPieces
@@ -133,9 +136,11 @@ class SearchResultsElementTree(ElementTree.ElementTree):
             viewers.remove(user)
             viewers.insert(0, user)
         for viewer in viewers:
-            viewerElement = ElementTree.SubElement(retElement, 'Viewer')
-            viewerElement.set('nickname', viewer.nickname().split('@')[0])
-            viewerElement.set('id', viewer.user_id())
+            viewerId = viewer.user_id()
+            if viewerId: # is very occasionally None, maybe from people closing their Google accounts?
+                viewerElement = ElementTree.SubElement(retElement, 'Viewer')
+                viewerElement.set('nickname', viewer.nickname().split('@')[0])
+                viewerElement.set('id', viewerId)
 
         return retElement
 
