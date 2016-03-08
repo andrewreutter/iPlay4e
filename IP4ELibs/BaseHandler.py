@@ -31,7 +31,7 @@ class BaseHandler(webapp.RequestHandler):
         return self.get()
 
     def requestIsMobile(self):
-        lowerAgent = self.request.user_agent.lower()
+        lowerAgent = (self.request.user_agent or '').lower() # or '' because user_agent is occasionally None
         for mobileStr in ('iphone', 'midp', 'opera mini', 'android', 'pre/1.0'):
             if lowerAgent.find(mobileStr) != -1:
                 return True
